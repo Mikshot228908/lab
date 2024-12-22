@@ -1,3 +1,5 @@
+const User = require('./model/User');
+const Role = require('./model/Role');
 class authController{
     async registration(req,res){
         try{
@@ -16,7 +18,11 @@ class authController{
     }
     async getUsers(req,res){
         try{
-            res.json("work")
+            const userRole = new Role()
+            const adminRole = new Role({value:'ADMIN'})
+            await userRole.save()
+            await adminRole.save()
+            res.json("server work")
         }catch(e){
 
         }
